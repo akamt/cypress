@@ -62,12 +62,12 @@ jobs:
       - name: Cache dependencies 💎
         uses: actions/cache@v2
         with:
-          path: ~/.npm
+          path: ~/.cache/yarn
           # use key string with "v1" for simple cache invalidation
           key: dependencies-v1-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
 
       - name: Install dependencies 📦
-        run: npm ci
+        run: yarn
         env:
           # we do not need to install Cypress itself
           # as we do not plan to run tests
