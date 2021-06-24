@@ -7,9 +7,6 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v2
 
-      - name: Run App 🌲
-        run: yarn && NODE_ENV=test yarn build && NODE_ENV=test yarn start
-
       - name: Install and run Cypress tests 🌲
         uses: cypress-io/github-action@v2
 
