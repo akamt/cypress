@@ -2,12 +2,14 @@ import React, { useState } from "react";
 
 //Titleコンポーネント(子)
 const Title = () => {
+  // eslint-disable-next-line no-console
   console.log("Title component");
   return <h2>useCallBackTest vol.1</h2>;
 };
 
 //Buttonコンポーネント(子)
 const Button = ({ handleClick, value }) => {
+  // eslint-disable-next-line no-console
   console.log("Button child component", value);
   return (
     <button type="button" onClick={handleClick}>
@@ -18,6 +20,7 @@ const Button = ({ handleClick, value }) => {
 
 //Countコンポーネント(子)
 const Count = ({ text, countState }) => {
+  // eslint-disable-next-line no-console
   console.log("Count child component", text);
   return (
     <p>
