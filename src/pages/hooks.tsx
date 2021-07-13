@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useTimeout } from "../hooks/useTimeout";
 import usePrevious from "../hooks/usePrevious";
+import useClickInside from "../hooks/useClickInside";
 
 const ExampleTimerFiveSeconds = (): JSX.Element => {
   const [seconds, setSeconds] = useState(0);
@@ -26,10 +27,33 @@ const MoneyCount = () => {
   );
 };
 
+const HitBox = ({ onClickInside }) => {
+  const clickRef = useRef<HTMLDivElement>(null);
+  useClickInside(clickRef, onClickInside);
+
+  return (
+    <div
+      className="hit-box"
+      ref={clickRef}
+      style={{
+        border: "5px solid green",
+        height: 300,
+        width: 600,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <p>Hit the box!</p>
+    </div>
+  );
+};
+
 const HookPage = () => (
   <>
     <ExampleTimerFiveSeconds />
     <MoneyCount />
+    <HitBox onClickInside={() => alert("hit the box")} />
   </>
 );
 
