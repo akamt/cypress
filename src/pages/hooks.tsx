@@ -3,6 +3,7 @@ import { useTimeout } from "../hooks/useTimeout";
 import usePrevious from "../hooks/usePrevious";
 import useClickInside from "../hooks/useClickInside";
 import useClickOutside from "../hooks/useClickOutside";
+import useFetch from "../hooks/useFetch";
 
 const ExampleTimerFiveSeconds = (): JSX.Element => {
   const [seconds, setSeconds] = useState(0);
@@ -73,12 +74,29 @@ const HitBox2 = ({ onClickOutside }) => {
   );
 };
 
+const FetchPerson = (): JSX.Element => {
+  const res = useFetch("http://swapi.dev/api/people/1/", {});
+
+  if (!res.response) {
+    return <div>Loading...</div>;
+  }
+
+  const person = res.response.name;
+
+  return (
+    <div>
+      <span>{person}</span>
+    </div>
+  );
+};
+
 const HookPage = (): JSX.Element => (
   <>
     <ExampleTimerFiveSeconds />
     <MoneyCount />
     <HitBox onClickInside={() => alert("hit the box")} />
     <HitBox2 onClickOutside={() => alert("don't hit the box")} />
+    <FetchPerson />
   </>
 );
 
