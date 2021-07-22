@@ -4,6 +4,7 @@ import usePrevious from "../hooks/usePrevious";
 import useClickInside from "../hooks/useClickInside";
 import useClickOutside from "../hooks/useClickOutside";
 import useFetch from "../hooks/useFetch";
+import useInterval from "../hooks/useInterval";
 
 const ExampleTimerFiveSeconds = (): JSX.Element => {
   const [seconds, setSeconds] = useState(0);
@@ -90,6 +91,16 @@ const FetchPerson = (): JSX.Element => {
   );
 };
 
+const ResourceCounter = () => {
+  const [resources, setResources] = useState(0);
+
+  useInterval(() => {
+    setResources(resources + 2);
+  }, 1000);
+
+  return <p>{resources}</p>;
+};
+
 const HookPage = (): JSX.Element => (
   <>
     <ExampleTimerFiveSeconds />
@@ -97,6 +108,7 @@ const HookPage = (): JSX.Element => (
     <HitBox onClickInside={() => alert("hit the box")} />
     <HitBox2 onClickOutside={() => alert("don't hit the box")} />
     <FetchPerson />
+    <ResourceCounter />
   </>
 );
 
