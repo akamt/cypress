@@ -5,6 +5,7 @@ import useClickInside from "../hooks/useClickInside";
 import useClickOutside from "../hooks/useClickOutside";
 import useFetch from "../hooks/useFetch";
 import useInterval from "../hooks/useInterval";
+import useComponentDidMount from "../hooks/useComponentDidMount";
 
 const ExampleTimerFiveSeconds = (): JSX.Element => {
   const [seconds, setSeconds] = useState(0);
@@ -101,6 +102,14 @@ const ResourceCounter = () => {
   return <p>{resources}</p>;
 };
 
+const MountComponent = () => {
+  useComponentDidMount(() => {
+    // eslint-disable-next-line no-console
+    console.log("This component has been mounted");
+  });
+
+  return <div>Check your browser console</div>;
+};
 const HookPage = (): JSX.Element => (
   <>
     <ExampleTimerFiveSeconds />
@@ -109,6 +118,7 @@ const HookPage = (): JSX.Element => (
     <HitBox2 onClickOutside={() => alert("don't hit the box")} />
     <FetchPerson />
     <ResourceCounter />
+    <MountComponent />
   </>
 );
 
