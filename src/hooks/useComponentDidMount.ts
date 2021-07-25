@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const useComponentDidMount = (onMountHandler: () => JSX.Element) => {
+const useComponentDidMount = (onMountHandler: () => void) => {
   useEffect(() => {
     onMountHandler();
   });

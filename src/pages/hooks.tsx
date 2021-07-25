@@ -106,9 +106,9 @@ const MountComponent = () => {
   useComponentDidMount(() => {
     // eslint-disable-next-line no-console
     console.log("This component has been mounted");
-
-    return <div>Check your browser console</div>;
   });
+
+  return <div>Check your browser console</div>;
 };
 const HookPage = (): JSX.Element => (
   <>
