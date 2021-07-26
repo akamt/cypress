@@ -6,6 +6,7 @@ import useClickOutside from "../hooks/useClickOutside";
 import useFetch from "../hooks/useFetch";
 import useInterval from "../hooks/useInterval";
 import useComponentDidMount from "../hooks/useComponentDidMount";
+import useComponentWillUnmount from "../hooks/useComponentWillUnmount";
 
 const ExampleTimerFiveSeconds = (): JSX.Element => {
   const [seconds, setSeconds] = useState(0);
@@ -110,6 +111,14 @@ const MountComponent = () => {
 
   return <div>Check your browser console</div>;
 };
+
+const UnMountComponent = (): JSX.Element => {
+  // eslint-disable-next-line no-console
+  useComponentWillUnmount(() => console.log("This Component will unmount"));
+
+  return <div>Check your browser console</div>;
+};
+
 const HookPage = (): JSX.Element => (
   <>
     <ExampleTimerFiveSeconds />
@@ -119,6 +128,7 @@ const HookPage = (): JSX.Element => (
     <FetchPerson />
     <ResourceCounter />
     <MountComponent />
+    <UnMountComponent />
   </>
 );
 
