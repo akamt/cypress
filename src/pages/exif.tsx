@@ -1,43 +1,36 @@
+import React, { useState } from "react";
 import exif from "exif-js/exif";
-import { useState } from "react";
 
 const ExifPage = (): JSX.Element => {
-  const [make, setMake] = useState("");
+  const [allMetaData, setAllMetaData] = useState({});
 
-  const handleChange = (e) => {
-    // eslint-disable-next-line no-console
-    console.log(e);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files[0];
 
-    const { files } = e.target;
-    // const fileReader = new FileReader();
-
-    // fileReader.readAsArrayBuffer(files[0]);
-    //
-    // fileReader.onload = (e) => {
-    //   const bytes = e.target.result;
-    //   // EXIF.readFromBinaryFileでexifの解析
-    //   const hoge = exif.readFromBinaryFile(bytes);
-    //   // 結果を表示
-    //   let result = "";
-    //
-    //   console.log(hoge);
-    //
-    //   // EXIF.getTag(this, "[exifのタグ名]")で、値を取得
-    //   result += "DateTimeOriginal:" + hoge["DateTimeOriginal"];
-    //   result += "<br>";
-    //   result += "Orientation:" + hoge["Orientation"];
-    //   // eslint-disable-next-line no-console
-    //   console.log(result);
-    // };
-
-    exif.getData(files[0], function () {
-      setMake(exif.getTag(this, "DateTimeOriginal"));
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    exif.getData(file, function () {
+      setAllMetaData(exif.getAllTags(this));
     });
   };
 
   return (
     <div>
-      <p>make: {make}</p>
+      <div>
+        {Object.keys(allMetaData).map((k) => (
+          <p key={k}>
+            {(typeof allMetaData[k] === "string" && (
+              <span>
+                {k}: {allMetaData[k]}
+              </span>
+            )) ||
+              (typeof allMetaData[k] === "object" &&
+                Object.keys(allMetaData[k]).map((kk) => (
+                  <span key={kk}>{kk} </span>
+                )))}
+          </p>
+        ))}
+      </div>
       <input type="file" onChange={handleChange} />
     </div>
   );
