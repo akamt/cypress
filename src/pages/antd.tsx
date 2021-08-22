@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DatePicker, message, Alert } from "antd";
+import { DatePicker, message, Alert, Button } from "antd";
 import { Moment } from "moment";
 
 const AntdPage = (): JSX.Element => {
@@ -21,6 +21,13 @@ const AntdPage = (): JSX.Element => {
           message="Selected Date"
           description={date ? date.format("YYYY-MM-DD") : "None"}
         />
+        <div style={{ display: "flex", padding: "16px" }}>
+          <Button type="primary">primary button</Button>
+          <Button type="ghost">ghost button</Button>
+          <Button type="dashed">dashed button</Button>
+          <Button type="link">link button</Button>
+          <Button type="text">text button</Button>
+        </div>
       </div>
     </div>
   );
