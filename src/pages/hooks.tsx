@@ -7,6 +7,7 @@ import useFetch from "../hooks/useFetch";
 import useInterval from "../hooks/useInterval";
 import useComponentDidMount from "../hooks/useComponentDidMount";
 import useComponentWillUnmount from "../hooks/useComponentWillUnmount";
+import Demo from "../hooks/useCookie";
 
 const ExampleTimerFiveSeconds = (): JSX.Element => {
   const [seconds, setSeconds] = useState(0);
@@ -129,6 +130,7 @@ const HookPage = (): JSX.Element => (
     <ResourceCounter />
     <MountComponent />
     <UnMountComponent />
+    <Demo />
   </>
 );
 
