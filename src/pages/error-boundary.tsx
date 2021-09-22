@@ -34,6 +34,7 @@ const ErrorComponent = () => {
 
 const myErrorHandler = (error: Error, info: { componentStack: string }) => {
   console.error("Handle Error", error);
+  // eslint-disable-next-line no-console
   console.log(info.componentStack);
 };
 
@@ -41,6 +42,7 @@ const ErrorBoundaryPage = () => (
   <ErrorBoundary
     FallbackComponent={ErrorFallback}
     onReset={() => {
+      // eslint-disable-next-line no-console
       console.log("try again!");
     }}
     onError={myErrorHandler}
